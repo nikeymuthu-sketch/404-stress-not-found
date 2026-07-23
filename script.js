@@ -1,219 +1,110 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+const title = document.getElementById("title");
+const message = document.getElementById("message");
+const nextBtn = document.getElementById("nextBtn");
+const progressBar = document.getElementById("progressBar");
 
-body{
-    font-family:'Poppins',sans-serif;
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(-45deg,#ffd6e8,#ffe8f4,#fff6fb,#dff5ff);
-    background-size:400% 400%;
-    animation:bgMove 12s ease infinite;
-}
+let scene = 0;
 
-@keyframes bgMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+const scenes = [
+{
+title:"Hi Love 💗",
+text:"Welcome to your tiny stress-free corner. Nini has been waiting for you all day. 🌸"
+},
+{
+title:"System Scan...",
+text:"Scanning today's stress levels... Please wait..."
+},
+{
+title:"Scan Complete ✅",
+text:"Diagnosis: Too much work. Too little happiness. Immediate cuddle therapy recommended."
 }
+];
 
-.background{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    z-index:-1;
-}
+function typeWriter(text, callback){
 
-.hearts::before,
-.hearts::after{
-    content:"💖";
-    position:absolute;
-    font-size:34px;
-    opacity:.35;
-    animation:floatHeart 10s linear infinite;
-}
+message.innerHTML="";
+nextBtn.style.display="none";
 
-.hearts::before{
-    left:18%;
-}
+let i=0;
 
-.hearts::after{
-    left:78%;
-    animation-delay:5s;
-}
+const timer=setInterval(()=>{
 
-@keyframes floatHeart{
-    from{
-        transform:translateY(110vh) rotate(0deg);
-    }
-    to{
-        transform:translateY(-20vh) rotate(360deg);
-    }
-}
+message.innerHTML+=text.charAt(i);
 
-.container{
-    width:92%;
-    max-width:1150px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:50px;
-}
+i++;
 
-.left{
-    flex:1;
-    display:flex;
-    justify-content:center;
-}
+if(i>=text.length){
 
-#nini{
-    width:320px;
-    animation:float 3s ease-in-out infinite;
-}
+clearInterval(timer);
 
-@keyframes float{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-15px);}
-    100%{transform:translateY(0);}
-}
-
-.right{
-    flex:1;
-}
-
-.bubble{
-    background:rgba(255,255,255,.45);
-    backdrop-filter:blur(18px);
-    border-radius:30px;
-    padding:40px;
-    box-shadow:0 12px 35px rgba(0,0,0,.12);
-}
-
-.name{
-    display:inline-block;
-    background:#ff5c93;
-    color:white;
-    padding:8px 18px;
-    border-radius:25px;
-    font-weight:600;
-    margin-bottom:20px;
-}
-
-h1{
-    font-family:'Fredoka',sans-serif;
-    color:#ff4f88;
-    font-size:44px;
-    margin-bottom:18px;
-}
-
-#message{
-    min-height:180px;
-    font-size:20px;
-    color:#444;
-    line-height:1.8;
-}
-
-.progress{
-    width:100%;
-    height:10px;
-    background:#ffe4ef;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:25px;
-}
-
-#progressBar{
-    width:0%;
-    height:100%;
-    background:#ff5c93;
-    transition:.4s;
-}
-
-button{
-    margin-top:18px;
-    padding:14px 30px;
-    border:none;
-    border-radius:30px;
-    background:#ff5c93;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
-}
-
-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 20px rgba(255,92,147,.3);
-}
-
-#nextBtn{
-    display:none;
-}
-
-.fade{
-    animation:fade .5s;
-}
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.choice{
-    display:block;
-    width:100%;
-    margin-top:15px;
-}
-
-.photo{
-    width:100%;
-    max-width:320px;
-    border-radius:20px;
-    margin-top:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
-}
-
-@media(max-width:900px){
-
-.container{
-    flex-direction:column;
-    text-align:center;
-    padding:20px;
-}
-
-#nini{
-    width:220px;
-}
-
-.bubble{
-    padding:30px;
-}
-
-h1{
-    font-size:34px;
-}
-
-#message{
-    font-size:18px;
-}
-
-button{
-    width:100%;
-}
+if(callback) callback();
 
 }
+
+},30);
+
+}
+
+function showScene(){
+
+progressBar.style.width=((scene)/(scenes.length+4))*100+"%";
+
+title.innerHTML=scenes[scene].title;
+
+typeWriter(scenes[scene].text,()=>{
+
+nextBtn.style.display="inline-block";
+
+});
+
+}
+
+nextBtn.onclick=nextScene;
+
+function nextScene(){
+
+scene++;
+
+if(scene<scenes.length){
+
+showScene();
+return;
+
+}
+
+if(scene===3){
+
+stressGame();
+return;
+
+}
+
+if(scene===4){
+
+jokeScene();
+return;
+
+}
+
+if(scene===5){
+
+letterScene();
+return;
+
+}
+
+if(scene===6){
+
+photoScene();
+return;
+
+}
+
+ending();
+
+}
+
+showScene();
 function stressGame(){
 
 progressBar.style.width="50%";
@@ -310,9 +201,9 @@ message.innerHTML=`
 
 <p>Because this smile deserves to stay forever... 💗</p>
 
-<img src="photo.jpg.JPG" class="photo" alt="Us">
+<img src="photo.jpg" class="photo" alt="Us">
 
-;
+`;
 
 nextBtn.style.display="inline-block";
 
