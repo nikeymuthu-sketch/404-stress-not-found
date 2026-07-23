@@ -1,65 +1,44 @@
-let page = 1;
+const messages = [
+    "🌸 Hi!!",
+    "I'm Nini. 💕",
+    "I heard my favorite human has been working really hard lately...",
+    "So I secretly made this tiny little place just for you. 🥹",
+    "For the next few minutes...",
+    "No deadlines.",
+    "No pressure.",
+    "No stress.",
+    "Just you... and me. 💖"
+];
 
-function nextPage() {
+let current = 0;
 
-    const title = document.getElementById("title");
-    const message = document.getElementById("message");
-    const button = document.querySelector("button");
+const text = document.getElementById("message");
+const button = document.getElementById("nextBtn");
 
-    if(page === 1){
+function showNextMessage(){
 
-        title.innerHTML = "Checking on my favorite person... ❤️";
+    if(current < messages.length){
 
-        message.innerHTML = `
-        Connecting to your heart... ❤️<br><br>
+        text.innerHTML = messages[current];
 
-        ✔ Heart: Still so kind.<br>
-        ✔ Mind: Carrying a little too much today.<br>
-        ✔ Energy: Running lower than usual.<br>
-        ✔ Smile: Recoverable ❤️<br><br>
+        current++;
 
-        <b>Diagnosis Complete</b><br><br>
+        setTimeout(showNextMessage,1800);
 
-        You've been giving so much of yourself lately...<br><br>
-
-        I can't help you with your work,<br>
-        or make all the pressure disappear.<br><br>
-
-        But I can tell you one thing...<br><br>
-
-        <b>You have me.<br>
-        And you don't have to carry everything alone. ❤️</b>
-        `;
-
-        button.innerHTML = "Continue ❤️";
-
-        page++;
     }
 
-    else if(page === 2){
+    else{
 
-        title.innerHTML = "Can I tell you something? 💛";
+        button.style.display="inline-block";
 
-        message.innerHTML = `
-        I know you've been trying your best.<br><br>
-
-        Some days are exciting.<br><br>
-
-        Some days are exhausting.<br><br>
-
-        And some days... you just want everything to stop for a while.<br><br>
-
-        If today was one of those days...<br><br>
-
-        I hope this little website makes you smile,<br>
-        even if it's just for a minute.<br><br>
-
-        Because you deserve moments of peace too. 🤍
-        `;
-
-        button.innerHTML = "There's something else... ❤️";
-
-        page++;
     }
+
+}
+
+window.onload = showNextMessage;
+
+function nextScene(){
+
+    alert("Scene 2 coming next! 🌸");
 
 }
