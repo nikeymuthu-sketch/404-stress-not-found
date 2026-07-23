@@ -6,19 +6,17 @@
 
 body{
     font-family:'Poppins',sans-serif;
-    overflow:hidden;
     height:100vh;
-
+    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-
-    background:linear-gradient(-45deg,#ffd6e8,#ffe8f4,#fff5f8,#dff5ff);
+    background:linear-gradient(-45deg,#ffd6e8,#ffe8f4,#fff6fb,#dff5ff);
     background-size:400% 400%;
-    animation:bg 12s ease infinite;
+    animation:bgMove 12s ease infinite;
 }
 
-@keyframes bg{
+@keyframes bgMove{
     0%{background-position:0% 50%;}
     50%{background-position:100% 50%;}
     100%{background-position:0% 50%;}
@@ -35,21 +33,21 @@ body{
 .hearts::after{
     content:"💖";
     position:absolute;
-    font-size:35px;
+    font-size:34px;
     opacity:.35;
-    animation:heart 10s linear infinite;
+    animation:floatHeart 10s linear infinite;
 }
 
 .hearts::before{
-    left:15%;
+    left:18%;
 }
 
 .hearts::after{
-    left:80%;
+    left:78%;
     animation-delay:5s;
 }
 
-@keyframes heart{
+@keyframes floatHeart{
     from{
         transform:translateY(110vh) rotate(0deg);
     }
@@ -60,8 +58,7 @@ body{
 
 .container{
     width:92%;
-    max-width:1200px;
-
+    max-width:1150px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -75,13 +72,13 @@ body{
 }
 
 #nini{
-    width:330px;
+    width:320px;
     animation:float 3s ease-in-out infinite;
 }
 
 @keyframes float{
     0%{transform:translateY(0);}
-    50%{transform:translateY(-18px);}
+    50%{transform:translateY(-15px);}
     100%{transform:translateY(0);}
 }
 
@@ -90,110 +87,69 @@ body{
 }
 
 .bubble{
-    position:relative;
-
     background:rgba(255,255,255,.45);
     backdrop-filter:blur(18px);
-
-    padding:45px;
-
-    border-radius:35px;
-
-    box-shadow:0 15px 50px rgba(0,0,0,.15);
-}
-
-.bubble::before{
-    content:"";
-
-    position:absolute;
-
-    left:-18px;
-    top:70px;
-
-    width:35px;
-    height:35px;
-
-    background:rgba(255,255,255,.45);
-
-    transform:rotate(45deg);
+    border-radius:30px;
+    padding:40px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
 }
 
 .name{
     display:inline-block;
-
     background:#ff5c93;
     color:white;
-
     padding:8px 18px;
-
     border-radius:25px;
-
     font-weight:600;
-
     margin-bottom:20px;
 }
 
 h1{
     font-family:'Fredoka',sans-serif;
-    font-size:48px;
     color:#ff4f88;
-    margin-bottom:20px;
+    font-size:44px;
+    margin-bottom:18px;
 }
 
 #message{
-    font-size:22px;
+    min-height:180px;
+    font-size:20px;
     color:#444;
     line-height:1.8;
-    min-height:170px;
 }
 
 .progress{
     width:100%;
     height:10px;
-
-    margin-top:30px;
-
     background:#ffe4ef;
-
     border-radius:20px;
-
     overflow:hidden;
+    margin-top:25px;
 }
 
 #progressBar{
     width:0%;
     height:100%;
-
     background:#ff5c93;
-
-    transition:width .4s;
+    transition:.4s;
 }
 
 button{
     margin-top:18px;
-
     padding:14px 30px;
-
     border:none;
-
     border-radius:30px;
-
     background:#ff5c93;
-
     color:white;
-
     font-size:18px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     transition:.3s;
 }
 
 button:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:0 10px 20px rgba(255,92,147,.35);
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(255,92,147,.3);
 }
 
 #nextBtn{
@@ -201,7 +157,7 @@ button:hover{
 }
 
 .fade{
-    animation:fade .6s;
+    animation:fade .5s;
 }
 
 @keyframes fade{
@@ -213,6 +169,20 @@ button:hover{
         opacity:1;
         transform:translateY(0);
     }
+}
+
+.choice{
+    display:block;
+    width:100%;
+    margin-top:15px;
+}
+
+.photo{
+    width:100%;
+    max-width:320px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
 @media(max-width:900px){
@@ -232,7 +202,7 @@ button:hover{
 }
 
 h1{
-    font-size:36px;
+    font-size:34px;
 }
 
 #message{
