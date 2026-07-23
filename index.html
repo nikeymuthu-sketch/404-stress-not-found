@@ -3,99 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Kuchu Puchu ❤️</title>
-
+<title>For Sriram ❤️</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div id="hearts"></div>
+<div id="stars"></div>
 
 <div class="container">
 
-<img src="nini.png" class="nini">
+    <!-- Nini -->
+    <img src="nini.png" class="nini" id="nini">
 
-<div id="textBox">
+    <!-- Slides -->
+    <section class="slide active">
+        <h1>Hey Sriram... ❤️</h1>
+        <p>Can I steal just a few minutes from your busy day?</p>
+        <button onclick="nextSlide()">Let's go</button>
+    </section>
 
-<h2 id="message"></h2>
+    <section class="slide">
+        <h2>Nini has something to tell you...</h2>
+        <p>
+            I know you've been carrying so much lately.
+            Deadlines...
+            Meetings...
+            Expectations...
+            Responsibilities...
+        </p>
+    </section>
 
-<p id="sub"></p>
+    <section class="slide">
+        <h2>And maybe...</h2>
+        <p>
+            Nobody really notices how tired you actually are.
+        </p>
+    </section>
 
-<button id="next">Next ❤️</button>
+    <section class="slide">
+        <h2>But I do.</h2>
+        <p>
+            I notice the late replies.
+            <br><br>
+            I notice when your smile sounds tired.
+            <br><br>
+            I notice when your mind is somewhere else.
+        </p>
+    </section>
 
-</div>
+    <section class="slide">
+        <h2>So...</h2>
+        <p>
+            Close your eyes for just five seconds.
+            <br><br>
+            Imagine Nini giving you the biggest hug ever.
+        </p>
+    </section>
 
-<div id="ending">
+    <section class="slide">
+        <div class="hug">🤍</div>
+        <h2>This is your hug.</h2>
+        <p>
+            It doesn't solve work.
+            <br>
+            But maybe...
+            <br>
+            it'll make your heart feel a little lighter.
+        </p>
+    </section>
 
-<img src="photo.jpg.JPG" class="photo">
+    <section class="slide">
+        <h2>I wish...</h2>
+        <p>
+            I could take away every bit of stress you're carrying.
+            <br><br>
+            I wish I could sit beside you while you work...
+            quietly...
+            just so you know someone is there.
+        </p>
+    </section>
 
-<h1>Forever Us ❤️</h1>
+    <section class="slide">
+        <h2>But...</h2>
+        <p>
+            I know I can't help with your deadlines.
+            <br><br>
+            I can't finish your work.
+            <br><br>
+            I can't make the pressure disappear.
+        </p>
+    </section>
 
-<p class="letter">
+    <section class="slide">
+        <h2>Yet...</h2>
+        <p>
+            There is one thing I know for sure.
+            <br><br>
+            You never...
+            ever...
+            have to carry it alone.
+        </p>
+    </section>
 
-My dearest Kuchu Puchu,
+    <section class="slide">
+        <h2>Because...</h2>
+        <p class="big">
+            You always have me.
+        </p>
+    </section>
 
-I know work has been exhausting lately.
+    <section class="slide">
+        <h2>On your good days.</h2>
+        <p>I'll celebrate with you.</p>
+    </section>
 
-Some days you smile...
+    <section class="slide">
+        <h2>On your hardest days.</h2>
+        <p>
+            I'll stay.
+            <br><br>
+            Even if all I can do is listen.
+        </p>
+    </section>
 
-Some days you pretend you're okay...
+    <section class="slide">
+        <h2>Whenever life feels heavy...</h2>
+        <p>
+            Think of this little Nini waiting here...
+            smiling at you...
+            reminding you to breathe.
+        </p>
+    </section>
 
-Some days you carry the whole world on your shoulders.
+    <section class="slide final">
+        <h1>I love you so much, Sriram. ❤️</h1>
 
-I wish I could take even a tiny bit of that weight away.
+        <p>
+            You don't have to be strong every second.
+            <br><br>
+            Rest when you need to.
+            Cry if you have to.
+            Smile when you can.
+            And remember...
+            <br><br>
+            Even when work gets overwhelming,
+            even when everything feels impossible,
+            even when the whole world feels heavy...
+            <br><br>
+            <span class="highlight">
+            You are never alone.
+            </span>
+            <br><br>
+            You always have me.
+            <br><br>
+            I may not be able to help with your deadlines.
+            I may not be able to make all the pressure disappear.
+            But I can promise you this...
+            <br><br>
+            I'll always stand beside you.
+            I'll always believe in you.
+            I'll always love you.
+            <br><br>
+            So whenever you're tired...
+            come back here.
+            Let Nini remind you that someone loves you more than words can ever explain.
+        </p>
 
-Since I can't always be beside you physically,
+        <h2 class="love">
+            Love,<br>
+            Nini 🤍
+        </h2>
 
-I made this little place...
-
-A place where Nini can remind you of something important.
-
-You are loved.
-
-You are appreciated.
-
-You are enough.
-
-You are my safest place.
-
-Whenever work gets too much,
-
-come back here.
-
-Read these words again.
-
-Imagine me holding your hand.
-
-Imagine me hugging you tightly.
-
-Everything will be okay.
-
-We'll get through every difficult day together.
-
-One step.
-
-One hug.
-
-One smile.
-
-At a time.
-
-I will always choose you.
-
-Always.
-
-I love you more than words could ever explain.
-
-— Your Nini ❤️
-
-</p>
-
-</div>
+        <button onclick="restart()">Read Again ❤️</button>
+    </section>
 
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
