@@ -1,126 +1,52 @@
-const messages=[
+const slides = document.querySelectorAll(".slide");
+let current = 0;
 
-{
-title:"Hi Kuchu Puchu ❤️",
-text:"Nini is here today..."
-},
+function showSlide(index){
 
-{
-title:"I know...",
-text:"You've been working so hard lately.\n\nMaybe harder than anyone realizes."
-},
+slides.forEach((slide)=>{
+slide.classList.remove("active");
+});
 
-{
-title:"Sometimes...",
-text:"You probably smile even when you're tired.\n\nYou tell everyone you're okay..."
-},
+slides[index].classList.add("active");
 
-{
-title:"But...",
-text:"It's okay to feel exhausted.\n\nIt's okay to have difficult days."
-},
-
-{
-title:"I just wanted to remind you...",
-text:"You don't always have to be strong.\n\nYou can rest too."
-},
-
-{
-title:"Close your eyes...",
-text:"Imagine I'm sitting beside you.\nHolding your hand.\nPlaying with your fingers.\nListening to every little thing you want to say."
-},
-
-{
-title:"I'm Proud of You ❤️",
-text:"Not because you're successful.\nNot because you work hard.\n\nI'm proud simply because you're YOU."
-},
-
-{
-title:"You make my world brighter.",
-text:"Thank you for existing.\nThank you for choosing me every single day."
-},
-
-{
-title:"Promise me one thing?",
-text:"Whenever life becomes too heavy...\nDon't carry it alone.\nLet me carry it with you."
-},
-
-{
-title:"One Last Thing...",
-text:"I love you.\nToday.\nTomorrow.\nEvery difficult day.\nEvery happy day.\nForever."
 }
 
-]
+function nextSlide(){
 
-let current=0
+slides[current].classList.remove("active");
 
-const msg=document.getElementById("message")
-const sub=document.getElementById("sub")
-const next=document.getElementById("next")
+current++;
 
-function show(){
-
-msg.classList.remove("fade")
-sub.classList.remove("fade")
+if(current>=slides.length){
+current=slides.length-1;
+}
 
 setTimeout(()=>{
-
-msg.innerHTML=messages[current].title
-sub.innerHTML=messages[current].text.replace(/\n/g,"<br>")
-
-msg.classList.add("fade")
-sub.classList.add("fade")
-
-},150)
+showSlide(current);
+},400);
 
 }
 
-show()
+function restart(){
 
-next.onclick=function(){
+slides[current].classList.remove("active");
 
-current++
-
-if(current<messages.length){
-
-show()
-
-}
-
-else{
-
-document.getElementById("textBox").style.display="none"
-
-document.getElementById("ending").style.display="block"
-
-document.body.style.overflow="auto"
-
-}
-
-}
-
-function createHeart(){
-
-const heart=document.createElement("div")
-
-heart.className="heart"
-
-heart.innerHTML="❤️"
-
-heart.style.left=Math.random()*100+"vw"
-
-heart.style.fontSize=(15+Math.random()*20)+"px"
-
-heart.style.animationDuration=(5+Math.random()*5)+"s"
-
-document.body.appendChild(heart)
+current=0;
 
 setTimeout(()=>{
-
-heart.remove()
-
-},10000)
+showSlide(current);
+},500);
 
 }
 
-setInterval(createHeart,350)
+document.addEventListener("click",(e)=>{
+
+if(e.target.tagName==="BUTTON") return;
+
+if(current<slides.length-1){
+nextSlide();
+}
+
+});
+
+showSlide(0);
