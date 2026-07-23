@@ -98,22 +98,7 @@ function scannerResults() {
 
   show();
 }
-function nextScene() {
-  scene++;
 
-  message.innerHTML = "";
-  title.innerHTML = "";
-  button.style.display = "none";
-  progress.style.width = "0%";
-
-  if (scene === 1) {
-    startScanner();
-  } else if (scene === 2) {
-    miniGame();
-  } else if (scene === 3) {
-    jokesScene();
-  }
-}
 
 function miniGame() {
 
