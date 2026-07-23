@@ -310,8 +310,9 @@ message.innerHTML=`
 
 <p>Because this smile deserves to stay forever... 💗</p>
 
-<img src="images/photo.jpg" class="photo" alt="Us">
-`;
+<img src="photo.jpg.JPG" class="photo" alt="Us">
+
+;
 
 nextBtn.style.display="inline-block";
 
