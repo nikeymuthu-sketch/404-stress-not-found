@@ -1,334 +1,397 @@
-const title = document.getElementById("title");
-const message = document.getElementById("message");
-const button = document.getElementById("nextBtn");
-const progress = document.getElementById("progressBar");
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-let scene = 0;
-let line = 0;
+body{
+    font-family:'Poppins',sans-serif;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#ffd6e8,#ffe8f4,#fff6fb,#dff5ff);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
+}
 
-const intro = [
-  "Hi!! 🌸",
-  "I'm Nini! 💖",
-  "I heard someone has been working really hard lately...",
-  "So I made this tiny place just for you.",
-  "No meetings.",
-  "No deadlines.",
-  "Only smiles. ❤️"
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.hearts::before,
+.hearts::after{
+    content:"💖";
+    position:absolute;
+    font-size:34px;
+    opacity:.35;
+    animation:floatHeart 10s linear infinite;
+}
+
+.hearts::before{
+    left:18%;
+}
+
+.hearts::after{
+    left:78%;
+    animation-delay:5s;
+}
+
+@keyframes floatHeart{
+    from{
+        transform:translateY(110vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(-20vh) rotate(360deg);
+    }
+}
+
+.container{
+    width:92%;
+    max-width:1150px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+}
+
+.left{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+#nini{
+    width:320px;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0);}
+}
+
+.right{
+    flex:1;
+}
+
+.bubble{
+    background:rgba(255,255,255,.45);
+    backdrop-filter:blur(18px);
+    border-radius:30px;
+    padding:40px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+}
+
+.name{
+    display:inline-block;
+    background:#ff5c93;
+    color:white;
+    padding:8px 18px;
+    border-radius:25px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+h1{
+    font-family:'Fredoka',sans-serif;
+    color:#ff4f88;
+    font-size:44px;
+    margin-bottom:18px;
+}
+
+#message{
+    min-height:180px;
+    font-size:20px;
+    color:#444;
+    line-height:1.8;
+}
+
+.progress{
+    width:100%;
+    height:10px;
+    background:#ffe4ef;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:25px;
+}
+
+#progressBar{
+    width:0%;
+    height:100%;
+    background:#ff5c93;
+    transition:.4s;
+}
+
+button{
+    margin-top:18px;
+    padding:14px 30px;
+    border:none;
+    border-radius:30px;
+    background:#ff5c93;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(255,92,147,.3);
+}
+
+#nextBtn{
+    display:none;
+}
+
+.fade{
+    animation:fade .5s;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.choice{
+    display:block;
+    width:100%;
+    margin-top:15px;
+}
+
+.photo{
+    width:100%;
+    max-width:320px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+@media(max-width:900px){
+
+.container{
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+}
+
+#nini{
+    width:220px;
+}
+
+.bubble{
+    padding:30px;
+}
+
+h1{
+    font-size:34px;
+}
+
+#message{
+    font-size:18px;
+}
+
+button{
+    width:100%;
+}
+
+}
+function stressGame(){
+
+progressBar.style.width="50%";
+
+title.innerHTML="🎮 Stress Rescue";
+
+message.innerHTML=`
+<p>Nini has a question...</p>
+<p><strong>What would make today better?</strong></p>
+
+<button class="choice" onclick="answer('🍫 Chocolate')">🍫 Chocolate</button>
+
+<button class="choice" onclick="answer('😴 A Nap')">😴 A Nap</button>
+
+<button class="choice" onclick="answer('🤗 A Hug')">🤗 A Hug</button>
+`;
+
+nextBtn.style.display="none";
+
+}
+
+function answer(choice){
+
+message.innerHTML=`
+<p>You picked <b>${choice}</b> 💖</p>
+
+<p>Excellent choice! Nini approves. ✨</p>
+
+<p>Stress levels dropping...</p>
+`;
+
+nextBtn.style.display="inline-block";
+
+}
+
+const jokes=[
+
+"Why don't programmers like nature? 🌳 It has too many bugs.",
+
+"404: Stress not found. 😎",
+
+"Your smile has been successfully installed. 💗",
+
+"Loading happiness... ███████ 100%",
+
+"Coffee tried its best. Now it's cuddle time. ☕🤍"
+
 ];
 
-button.style.display = "none";
+function jokeScene(){
 
-window.onload = () => {
-  message.innerHTML = "";
-  showIntro();
-};
+progressBar.style.width="65%";
 
-function showIntro() {
-  if (line >= intro.length) {
-    button.style.display = "inline-block";
-    button.innerHTML = "Let's Go 💖";
-    return;
-  }
+title.innerHTML="😂 Emergency Joke";
 
-  typeWriter(intro[line], () => {
-    message.innerHTML += "<br><br>";
-    line++;
-    setTimeout(showIntro, 500);
-  });
-}
+message.innerHTML=`
+<p>${jokes[Math.floor(Math.random()*jokes.length)]}</p>
+`;
 
-function typeWriter(text, done) {
-  let i = 0;
-
-  function type() {
-    if (i < text.length) {
-      message.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(type, 35);
-    } else {
-      done();
-    }
-  }
-
-  type();
-}
-
-button.onclick = nextScene;
-
-
-function startScanner() {
-  title.innerHTML = "🩺 Stress Scanner";
-
-  let percent = 0;
-  progress.style.width = "0%";
-
-  const scan = setInterval(() => {
-    percent++;
-    progress.style.width = percent + "%";
-
-    if (percent >= 100) {
-      clearInterval(scan);
-      scannerResults();
-    }
-  }, 25);
-}
-
-function scannerResults() {
-  const results = [
-    "❤️ Heart detected...",
-    "🧠 Brain detected...",
-    "☕ Coffee level: VERY HIGH...",
-    "😵 Stress level: TOO HIGH...",
-    "🐰 Diagnosis: This human needs hugs immediately."
-  ];
-
-  let i = 0;
-
-  function show() {
-    if (i >= results.length) {
-      button.style.display = "inline-block";
-      button.innerHTML = "Continue ❤️";
-      return;
-    }
-
-    message.innerHTML += results[i] + "<br><br>";
-    i++;
-    setTimeout(show, 900);
-  }
-
-  show();
-}
-
-
-function miniGame() {
-
-  title.innerHTML = "🎮 Stress Rescue";
-
-  message.innerHTML = `
-  Nini has a question...<br><br>
-  What would make today better?<br><br>
-
-  <button onclick="gameChoice('🍫 Chocolate')">🍫 Chocolate</button><br><br>
-
-  <button onclick="gameChoice('😴 Nap')">😴 Nap</button><br><br>
-
-  <button onclick="gameChoice('🤗 Hug')">🤗 Hug</button>
-  `;
+nextBtn.style.display="inline-block";
 
 }
 
-function gameChoice(choice) {
+function letterScene(){
 
-  title.innerHTML = "🐰 Nini";
+progressBar.style.width="80%";
 
-  message.innerHTML = `
-  You chose:<br><br>
+title.innerHTML="💌 A Letter";
 
-  <h2>${choice}</h2>
+message.innerHTML=`
 
-  Excellent choice! 💖<br><br>
+<p>I know today might have been exhausting.</p>
 
-  But honestly...<br><br>
+<p>But I'm really proud of you.</p>
 
-  I think you deserve ALL THREE. 🥹❤️
-  `;
+<p>Thank you for working so hard every single day.</p>
 
-  button.style.display = "inline-block";
-  button.innerHTML = "Next 💖";
+<p>Please don't forget to rest, smile, and take care of yourself.</p>
+
+<p>No matter how stressful today was… I'll always be cheering for you. 💖</p>
+
+`;
+
+nextBtn.style.display="inline-block";
+
+}
+function photoScene(){
+
+progressBar.style.width="90%";
+
+title.innerHTML="📸 One More Thing...";
+
+message.innerHTML=`
+
+<p>Because this smile deserves to stay forever... 💗</p>
+
+<img src="photo.jpg" class="photo" alt="Us">
+
+`;
+
+nextBtn.style.display="inline-block";
 
 }
 
-function jokesScene() {
+function ending(){
 
-  title.innerHTML = "😂 Office Investigation";
+progressBar.style.width="100%";
 
-  const jokes = [
+title.innerHTML="❤️ Mission Complete";
 
-    "I secretly visited your workplace... 👀",
+message.innerHTML=`
 
-    "The printer looked stressed too.",
+<h2>You survived today.</h2>
 
-    "Your coffee mug deserves overtime pay. ☕",
+<p>I'm so proud of you.</p>
 
-    "Your boss has been borrowing my favorite human for too long. 😤",
+<p>Whenever work gets overwhelming, remember...</p>
 
-    "Verdict: Immediate cuddles required. ❤️"
+<p><strong>You are loved more than you know. 💖</strong></p>
 
-  ];
+<p>Thank you for being you.</p>
 
-  let i = 0;
+<p>Love,<br>Your girlfriend 🌸</p>
 
-  function show() {
+`;
 
-    if (i >= jokes.length) {
+nextBtn.style.display="none";
 
-      button.style.display = "inline-block";
-      button.innerHTML = "One More Thing ❤️";
-      return;
-
-    }
-
-    message.innerHTML += jokes[i] + "<br><br>";
-
-    i++;
-
-    setTimeout(show, 1200);
-
-  }
-
-  show();
-
-}
-function nextScene() {
-
-  scene++;
-
-  message.innerHTML = "";
-  title.innerHTML = "";
-  button.style.display = "none";
-  progress.style.width = "0%";
-
-  if (scene === 1) {
-
-    startScanner();
-
-  } else if (scene === 2) {
-
-    miniGame();
-
-  } else if (scene === 3) {
-
-    jokesScene();
-
-  } else if (scene === 4) {
-
-    letterScene();
-
-  } else if (scene === 5) {
-
-    photoScene();
-
-  }
+celebrate();
 
 }
 
-function letterScene() {
+function celebrate(){
 
-  title.innerHTML = "💌 A Little Message";
+const hearts=document.querySelector(".hearts");
 
-  const lines = [
+let count=0;
 
-    "I know work has been exhausting lately.",
+const timer=setInterval(()=>{
 
-    "You've been giving your best every single day.",
+const heart=document.createElement("div");
 
-    "Even when nobody notices... I do.",
+heart.innerHTML="💖";
 
-    "I'm so proud of you.",
+heart.style.position="fixed";
+heart.style.left=Math.random()*100+"vw";
+heart.style.top="-30px";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+heart.style.pointerEvents="none";
+heart.style.animation="fall 5s linear forwards";
 
-    "Thank you for working so hard for our future.",
+document.body.appendChild(heart);
 
-    "Whenever you feel tired... remember I'm always cheering for you. ❤️"
+setTimeout(()=>heart.remove(),5000);
 
-  ];
+count++;
 
-  let i = 0;
+if(count>30){
+clearInterval(timer);
+}
 
-  function show() {
-
-    if (i >= lines.length) {
-
-      button.style.display = "inline-block";
-      button.innerHTML = "One Last Surprise 🎁";
-      return;
-
-    }
-
-    message.innerHTML += lines[i] + "<br><br>";
-
-    i++;
-
-    setTimeout(show, 1500);
-
-  }
-
-  show();
+},200);
 
 }
 
-function photoScene() {
+const style=document.createElement("style");
 
-  title.innerHTML = "📸 My Favorite Picture";
-
-  message.innerHTML = `
-  <img src="photo.jpg"
-  style="width:260px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.2);margin-bottom:20px;"><br><br>
-
-  Every time I see this picture,<br>
-  I smile. 🥹❤️<br><br>
-
-  Thank you for being you.<br><br>
-
-  I love you so much.
-  `;
-
-  button.style.display = "inline-block";
-  button.innerHTML = "❤️ I Love You ❤️";
-
-  button.onclick = ending;
-
+style.innerHTML=`
+@keyframes fall{
+0%{
+transform:translateY(-30px) rotate(0deg);
+opacity:1;
 }
-
-function ending() {
-
-  button.style.display = "none";
-
-  title.innerHTML = "💖";
-
-  message.innerHTML = `
-  <h2>You survived today's stress!</h2>
-
-  <br>
-
-  Achievement Unlocked 🏆
-
-  <br><br>
-
-  ❤️ World's Best Boyfriend ❤️
-
-  <br><br>
-
-  Come collect your reward...
-
-  <br><br>
-
-  Unlimited hugs from me. 🤗💕
-  `;
-
-  for (let i = 0; i < 80; i++) {
-
-    const heart = document.createElement("div");
-
-    heart.innerHTML = "💖";
-
-    heart.style.position = "fixed";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.top = "-30px";
-    heart.style.fontSize = (20 + Math.random() * 25) + "px";
-    heart.style.pointerEvents = "none";
-    heart.style.transition = "transform 5s linear, top 5s linear";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.style.top = "110vh";
-      heart.style.transform = `translateX(${Math.random() * 200 - 100}px)`;
-    }, 50);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 5500);
-
-  }
-
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
 }
+}
+`;
+
+document.head.appendChild(style);
