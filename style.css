@@ -1,143 +1,843 @@
+/* ==========================================
+   GOOGLE FONT RESET
+========================================== */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-font-family:Poppins,sans-serif;
-background:linear-gradient(180deg,#1a1127,#120d1f,#090811);
-overflow:hidden;
-color:white;
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #ffe6f2,
+        #fff7d6,
+        #e7f8ff,
+        #f7ebff
+    );
+
+    background-size:400% 400%;
+
+    animation:bgMove 15s ease infinite;
+
+    overflow:hidden;
+
+    height:100vh;
+
+    color:#555;
 }
 
-#stars{
-position:fixed;
-width:100%;
-height:100%;
-background:url("https://www.transparenttextures.com/patterns/stardust.png");
-opacity:.3;
-animation:move 50s linear infinite;
+/* ==========================================
+   ANIMATED BACKGROUND
+========================================== */
+
+@keyframes bgMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
 }
 
-@keyframes move{
-from{transform:translateY(0);}
-to{transform:translateY(-500px);}
+/* ==========================================
+   STORY CONTAINER
+========================================== */
+
+#story{
+
+    width:100%;
+    height:100vh;
+
+    position:relative;
+
+    overflow:hidden;
+
 }
 
-.container{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:30px;
-position:relative;
-overflow:hidden;
+/* ==========================================
+   EACH PAGE
+========================================== */
+
+.page{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:30px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:translateX(80px);
+
+    transition:
+
+        opacity .9s ease,
+
+        transform .9s ease;
+
 }
 
-.slide{
-position:absolute;
-width:80%;
-max-width:700px;
-opacity:0;
-transform:scale(.95) translateY(30px);
-transition:1.2s;
-pointer-events:none;
+.page.active{
+
+    opacity:1;
+
+    transform:translateX(0);
+
+    pointer-events:auto;
+
 }
 
-.slide.active{
-opacity:1;
-transform:scale(1) translateY(0);
-pointer-events:auto;
-}
+/* ==========================================
+   NINI
+========================================== */
 
 .nini{
-position:fixed;
-bottom:20px;
-right:20px;
-width:170px;
-animation:float 3s ease-in-out infinite;
-filter:drop-shadow(0 0 20px rgba(255,255,255,.25));
+
+    width:180px;
+
+    user-select:none;
+
+    filter:drop-shadow(0 12px 18px rgba(0,0,0,.15));
+
 }
 
-@keyframes float{
-0%,100%{
-transform:translateY(0);
-}
-50%{
-transform:translateY(-18px);
-}
-}
+.final{
 
-h1{
-font-size:52px;
-margin-bottom:20px;
-font-family:Caveat;
-}
-
-h2{
-font-size:34px;
-margin-bottom:25px;
-font-family:Caveat;
-}
-
-p{
-font-size:22px;
-line-height:1.9;
-opacity:.95;
-}
-
-.big{
-font-size:45px;
-font-weight:bold;
-color:#ffd6ef;
-animation:pulse 2s infinite;
-}
-
-.highlight{
-color:#ffd8f5;
-font-size:32px;
-font-weight:bold;
-}
-
-button{
-margin-top:45px;
-padding:15px 38px;
-border:none;
-border-radius:50px;
-background:white;
-color:#7b3cff;
-font-size:18px;
-cursor:pointer;
-transition:.4s;
-}
-
-button:hover{
-transform:scale(1.1);
+    width:210px;
 }
 
 .hug{
-font-size:100px;
-animation:heartbeat 1.4s infinite;
-margin-bottom:25px;
+
+    animation:hug 2s infinite;
 }
 
-.love{
-margin-top:40px;
-color:#ffd6f4;
+@keyframes hug{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+/* ==========================================
+   BOUNCE
+========================================== */
+
+.bounce{
+
+    animation:bounce 2s infinite;
+
+}
+
+@keyframes bounce{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+}
+
+/* ==========================================
+   GLASS CARD
+========================================== */
+
+.bubble{
+
+    width:min(750px,90%);
+
+    background:rgba(255,255,255,.45);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.6);
+
+    border-radius:35px;
+
+    padding:45px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 20px 45px rgba(255,182,193,.25);
+
+    animation:fadeUp 1s;
+
+}
+
+/* ==========================================
+   FADE UP
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   HEADINGS
+========================================== */
+
+h1{
+
+    font-size:3rem;
+
+    color:#ff5d9e;
+
+    font-family:'Pacifico',cursive;
+
+    margin-bottom:18px;
+
+}
+
+h2{
+
+    font-size:2rem;
+
+    color:#ff7ab6;
+
+    margin-bottom:15px;
+
+}
+
+span{
+
+    color:#ff4f96;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   PARAGRAPH
+========================================== */
+
+p{
+
+    font-size:1.2rem;
+
+    line-height:1.9;
+
+    margin:12px 0;
+
+    color:#666;
+
+}
+
+/* ==========================================
+   SPECIAL TEXT
+========================================== */
+
+.highlight{
+
+    color:#ff5d9e;
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+}
+
+.quote{
+
+    color:#b56cff;
+
+    font-style:italic;
+
+    font-weight:600;
+
+}
+
+.love-line{
+
+    color:#ff4c91;
+
+    font-size:2.2rem;
+
+    margin:25px 0;
+
+}
+
+.love-text{
+
+    margin-top:25px;
+
+    font-size:1.45rem;
+
+    color:#ff4f96;
+
+    font-weight:700;
+
+}
+
+.signature{
+
+    margin-top:30px;
+
+    color:#9f6fff;
+
+    font-family:'Pacifico',cursive;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+button{
+
+    margin-top:20px;
+
+    padding:15px 38px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+    90deg,
+    #ff7ab6,
+    #ff5d9e
+    );
+
+    color:white;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:
+    0 10px 25px rgba(255,92,158,.35);
+
+}
+
+button:hover{
+
+    transform:translateY(-5px) scale(1.05);
+
+    box-shadow:
+    0 18px 35px rgba(255,92,158,.45);
+
+}
+
+/* ==========================================
+   PHOTO
+========================================== */
+
+.photo-box{
+
+    margin-top:25px;
+
+}
+
+.photo{
+
+    width:280px;
+
+    border-radius:25px;
+
+    border:8px solid white;
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.15);
+
+}
+
+/* ==========================================
+   RESTART BUTTON
+========================================== */
+
+#restart{
+
+    margin-top:30px;
+
+}
+/* ==========================================
+   FLOATING HEARTS
+========================================== */
+
+.hearts,
+.sparkles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-1;
+}
+
+/* Hearts */
+
+.hearts::before,
+.hearts::after{
+    content:"💖 💗 💕 🤍 💝 💓 💞";
+    position:absolute;
+    font-size:2rem;
+    width:100%;
+    animation:heartsUp 20s linear infinite;
+    opacity:.35;
+}
+
+.hearts::after{
+    animation-duration:28s;
+    animation-delay:-10s;
+    font-size:1.6rem;
+    opacity:.25;
+}
+
+@keyframes heartsUp{
+
+    from{
+        transform:translateY(110vh);
+    }
+
+    to{
+        transform:translateY(-120vh);
+    }
+
+}
+
+/* ==========================================
+   SPARKLES
+========================================== */
+
+.sparkles::before,
+.sparkles::after{
+
+    content:"✨ ✨ ⭐ ✨ 🌟 ✨ ⭐ ✨";
+
+    position:absolute;
+
+    width:100%;
+
+    font-size:1.6rem;
+
+    animation:sparkleFloat 16s linear infinite;
+
+    opacity:.6;
+
+}
+
+.sparkles::after{
+
+    animation-delay:-8s;
+
+    font-size:2rem;
+
+    opacity:.35;
+
+}
+
+@keyframes sparkleFloat{
+
+    from{
+        transform:translateY(-120vh);
+    }
+
+    to{
+        transform:translateY(120vh);
+    }
+
+}
+
+/* ==========================================
+   SOFT GLOW
+========================================== */
+
+.bubble{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.bubble::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    background:rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    top:-120px;
+    right:-100px;
+
+    filter:blur(40px);
+
+}
+
+.bubble::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    background:rgba(255,192,203,.2);
+
+    border-radius:50%;
+
+    left:-60px;
+    bottom:-60px;
+
+    filter:blur(40px);
+
+}
+
+/* ==========================================
+   BUTTON GLOW
+========================================== */
+
+button{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+button::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120%;
+
+    top:0;
+
+    width:70%;
+
+    height:100%;
+
+    background:rgba(255,255,255,.5);
+
+    transform:skewX(-25deg);
+
+}
+
+button:hover::before{
+
+    animation:shine .8s;
+
+}
+
+@keyframes shine{
+
+    from{
+
+        left:-120%;
+
+    }
+
+    to{
+
+        left:150%;
+
+    }
+
+}
+
+/* ==========================================
+   IMAGE ANIMATION
+========================================== */
+
+.photo{
+
+    transition:.5s;
+
+}
+
+.photo:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================================
+   NINI FLOAT
+========================================== */
+
+.nini{
+
+    animation:float 4s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+/* ==========================================
+   HEARTBEAT
+========================================== */
+
+.love-line{
+
+    animation:heartbeat 1.5s infinite;
+
 }
 
 @keyframes heartbeat{
-0%{transform:scale(1);}
-30%{transform:scale(1.2);}
-50%{transform:scale(1);}
-70%{transform:scale(1.25);}
-100%{transform:scale(1);}
+
+    0%{
+        transform:scale(1);
+    }
+
+    25%{
+        transform:scale(1.05);
+    }
+
+    50%{
+        transform:scale(1.12);
+    }
+
+    75%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
 }
 
-@keyframes pulse{
-50%{
-transform:scale(1.08);
+/* ==========================================
+   TEXT FADE
+========================================== */
+
+p,
+h1,
+h2{
+
+    animation:textFade .8s ease;
+
 }
+
+@keyframes textFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   PHOTO GLOW
+========================================== */
+
+.photo{
+
+    animation:photoGlow 3s infinite;
+
+}
+
+@keyframes photoGlow{
+
+    0%{
+
+        box-shadow:0 0 20px rgba(255,150,200,.25);
+
+    }
+
+    50%{
+
+        box-shadow:0 0 45px rgba(255,150,200,.6);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 20px rgba(255,150,200,.25);
+
+    }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+    .bubble{
+
+        padding:30px 22px;
+
+        border-radius:25px;
+
+    }
+
+    h1{
+
+        font-size:2.2rem;
+
+    }
+
+    h2{
+
+        font-size:1.6rem;
+
+    }
+
+    p{
+
+        font-size:1rem;
+
+    }
+
+    .nini{
+
+        width:140px;
+
+    }
+
+    .photo{
+
+        width:220px;
+
+    }
+
+    button{
+
+        width:100%;
+
+        padding:15px;
+
+    }
+
+}
+
+/* ==========================================
+   SMALL PHONES
+========================================== */
+
+@media(max-width:430px){
+
+    .bubble{
+
+        width:95%;
+
+    }
+
+    h1{
+
+        font-size:1.8rem;
+
+    }
+
+    h2{
+
+        font-size:1.3rem;
+
+    }
+
+    p{
+
+        font-size:.95rem;
+
+    }
+
+    .nini{
+
+        width:120px;
+
+    }
+
 }
