@@ -1,4 +1,3 @@
-
 let page = 1;
 
 function nextPage() {
@@ -33,6 +32,32 @@ function nextPage() {
         `;
 
         button.innerHTML = "Continue ❤️";
+
+        page++;
+    }
+
+    else if(page === 2){
+
+        title.innerHTML = "Can I tell you something? 💛";
+
+        message.innerHTML = `
+        I know you've been trying your best.<br><br>
+
+        Some days are exciting.<br><br>
+
+        Some days are exhausting.<br><br>
+
+        And some days... you just want everything to stop for a while.<br><br>
+
+        If today was one of those days...<br><br>
+
+        I hope this little website makes you smile,<br>
+        even if it's just for a minute.<br><br>
+
+        Because you deserve moments of peace too. 🤍
+        `;
+
+        button.innerHTML = "There's something else... ❤️";
 
         page++;
     }
